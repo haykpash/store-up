@@ -1,19 +1,20 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import { Card } from 'react-bootstrap'
 import RatingStars from './RatingStars'
 
 const ProductCard = ({ product }) => {
   return (
     <Card className='my-4 p-1'>
-      <a href={`/product/${product.id}`}>
+      <NavLink to={`/product/${product.id}`}>
         <Card.Img src={product.image} variant='top' />
-      </a>
+      </NavLink>
       <Card.Body>
-        <a href={`/product/${product.id}`}>
+        <NavLink to={`/product/${product.id}`}>
           <Card.Title as='div'>
             <strong>{product.name}</strong>
           </Card.Title>
-        </a>
+        </NavLink>
         <Card.Text as='div'>
           <RatingStars
             value={product.ratingStars}

@@ -2,7 +2,7 @@ const productData = [
   {
     id: '01',
     name: 'number 01 of number 01 product',
-    image: 'img/1.jpg',
+    image: '/images/img1.jpg',
     description:
       'description of nunber 01 description of nunber 01 description of nunber 01 description of nunber 01 description of nunber 01 ',
     brand: 'Brand name of 01',
@@ -15,20 +15,20 @@ const productData = [
   {
     id: '02',
     name: 'number 02 of number 02 product',
-    image: 'img/2.jpg',
+    image: '/images/img2.jpg',
     description:
       'description of nunber 02 description of nunber 02 description of nunber 02 description of nunber 02 description of nunber 02 ',
     brand: 'Brand name of 02',
     category: 'this is 02',
     price: 200.99,
-    inStock: 2,
+    inStock: 0,
     ratingStars: 1,
     reviewCount: 2,
   },
   {
     id: '03',
     name: 'number 03 of number 03 product',
-    image: 'img/3.jpg',
+    image: '/images/img3.jpg',
     description:
       'description of nunber 03 description of nunber 03 description of nunber 03 description of nunber 03 description of nunber 03 ',
     brand: 'Brand name of 03',
@@ -41,7 +41,7 @@ const productData = [
   {
     id: '04',
     name: 'number 04 of number 04 product',
-    image: 'img/4.jpg',
+    image: '/images/img4.jpg',
     description:
       'description of nunber 04 description of nunber 04description of nunber 04description of nunber 04description of nunber 04',
     brand: 'Brand name of 04',
@@ -54,7 +54,7 @@ const productData = [
   {
     id: '05',
     name: 'number 05 of number 05 product',
-    image: 'img/5.jpg',
+    image: '/images/img5.jpg',
     description:
       'description of nunber 05 description of nunber 05description of nunber 05description of nunber 05description of nunber 05',
     brand: 'Brand name of 05',
@@ -67,7 +67,7 @@ const productData = [
   {
     id: '06',
     name: 'number 06 of number 06 product',
-    image: 'img/6.jpg',
+    image: '/images/img6.jpg',
     description:
       'description of nunber 06 description of nunber 06description of nunber 06description of nunber 06description of nunber 06',
     brand: 'Brand name of 06',
@@ -80,7 +80,7 @@ const productData = [
   {
     id: '07',
     name: 'number 07 of number 07 product',
-    image: 'img/7.jpg',
+    image: '/images/img7.jpg',
     description:
       'description of nunber 07 description of nunber 07description of nunber 07description of nunber 07description of nunber 07',
     brand: 'Brand name of 07',
@@ -93,7 +93,7 @@ const productData = [
   {
     id: '08',
     name: 'number 08 of number 08 product',
-    image: 'img/8.jpg',
+    image: '/images/img8.jpg',
     description:
       'description of nunber 08 description of nunber 08description of nunber 08description of nunber 08description of nunber 08',
     brand: 'Brand name of 08',
@@ -106,7 +106,7 @@ const productData = [
   {
     id: '09',
     name: 'number 09 of number 09 product',
-    image: 'img/9.jpg',
+    image: '/images/img9.jpg',
     description:
       'description of nunber 09 description of nunber 09description of nunber 07description of nunber 07description of nunber 07',
     brand: 'Brand name of 09',
@@ -119,7 +119,7 @@ const productData = [
   {
     id: '10',
     name: 'number 10 of number 10 product',
-    image: 'img/10.jpg',
+    image: '/images/img10.jpg',
     description:
       'description of nunber 10 description of nunber 10 description of nunber 10 description of nunber 10 description of nunber 10',
     brand: 'Brand name of 10',

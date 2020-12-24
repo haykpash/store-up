@@ -16,3 +16,7 @@ h4 {
 .ratingStars .review {
   margin: 1rem;
 }
+
+.header .ml-auto .nav-link:hover {
+  color: lightgray;
+}
