@@ -10,8 +10,8 @@ const ProductCard = ({ product }) => {
         <Card.Img src={product.image} variant='top' />
       </NavLink>
       <Card.Body>
-        <NavLink to={`/product/${product.id}`}>
-          <Card.Title as='div'>
+        <NavLink className='links' to={`/product/${product.id}`}>
+          <Card.Title as='h5'>
             <strong>{product.name}</strong>
           </Card.Title>
         </NavLink>
@@ -21,7 +21,7 @@ const ProductCard = ({ product }) => {
             text={`${product.reviewCount} review`}
           />
         </Card.Text>
-        <Card.Text as='h4'>${product.price}</Card.Text>
+        <Card.Text as='h4'>$ {product.price}</Card.Text>
       </Card.Body>
     </Card>
   )
