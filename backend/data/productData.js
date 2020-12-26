@@ -130,4 +130,4 @@ const productData = [
     reviewCount: 10,
   },
 ]
-export default productData
+module.exports = productData
