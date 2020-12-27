@@ -1,16 +1,19 @@
 import express from 'express'
 import products from './data/productData.js'
 import dotenv from 'dotenv'
+import path from 'path'
 
 dotenv.config()
 
 const app = express()
 
-//app.use(express.static(path.join(__dirname, 'build')))
+app.use(express.json())
+//-------//app.use(express.static(path.join(__dirname, 'build')))
 
-app.get('/', (req, res) => {
-  res.send("send Hayk's data")
-})
+// app.get('/', (req, res) => {
+//   res.send("send Hayk's data")
+// })
+
 app.get('/api/products', (req, res) => {
   res.json(products)
 })
@@ -19,6 +22,21 @@ app.get('/api/products/:id', (req, res) => {
   res.json(product)
 })
 
+const __dirname = path.resolve()
+//app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '/frontend/build')))
+
+  app.get('*', (req, res) =>
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+  )
+} else {
+  app.get('/', (req, res) => {
+    res.send("send Hayk's data")
+  })
+}
+
 const PORT = process.env.PORT || 5000
 
-app.listen(PORT, console.log(`Mode ${process.env.NODE_ENV}, Port ${PORT}`))
+app.listen(PORT, console.log(`Mode ${process.env.NODE_ENV} , Port ${PORT}`))
