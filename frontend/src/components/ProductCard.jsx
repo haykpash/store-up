@@ -5,7 +5,7 @@ import RatingStars from './RatingStars'
 
 const ProductCard = ({ product }) => {
   return (
-    <Card className='my-4 p-1'>
+    <Card bg='light' className='my-4 p-1' style={{}}>
       <NavLink to={`/product/${product.id}`}>
         <Card.Img src={product.image} variant='top' />
       </NavLink>
