@@ -22,7 +22,7 @@ app.get('/api/products/:id', (req, res) => {
   res.json(product)
 })
 
-const __dirname = path.resolve()
+//const __dirname = path.resolve()
 //app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 if (process.env.NODE_ENV === 'production') {
