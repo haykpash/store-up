@@ -1,6 +1,5 @@
 const productData = [
   {
-    id: '01',
     name: 'number 01 of number 01 product',
     image: '/images/img1.jpg',
     description:
@@ -13,7 +12,6 @@ const productData = [
     reviewCount: 1,
   },
   {
-    id: '02',
     name: 'number 02 of number 02 product',
     image: '/images/img2.jpg',
     description:
@@ -26,7 +24,6 @@ const productData = [
     reviewCount: 2,
   },
   {
-    id: '03',
     name: 'number 03 of number 03 product',
     image: '/images/img3.jpg',
     description:
@@ -39,7 +36,6 @@ const productData = [
     reviewCount: 3,
   },
   {
-    id: '04',
     name: 'number 04 of number 04 product',
     image: '/images/img4.jpg',
     description:
@@ -52,7 +48,6 @@ const productData = [
     reviewCount: 4,
   },
   {
-    id: '05',
     name: 'number 05 of number 05 product',
     image: '/images/img5.jpg',
     description:
@@ -65,7 +60,6 @@ const productData = [
     reviewCount: 5,
   },
   {
-    id: '06',
     name: 'number 06 of number 06 product',
     image: '/images/img6.jpg',
     description:
@@ -78,7 +72,6 @@ const productData = [
     reviewCount: 6,
   },
   {
-    id: '07',
     name: 'number 07 of number 07 product',
     image: '/images/img7.jpg',
     description:
@@ -91,7 +84,6 @@ const productData = [
     reviewCount: 7,
   },
   {
-    id: '08',
     name: 'number 08 of number 08 product',
     image: '/images/img8.jpg',
     description:
@@ -104,7 +96,6 @@ const productData = [
     reviewCount: 8,
   },
   {
-    id: '09',
     name: 'number 09 of number 09 product',
     image: '/images/img9.jpg',
     description:
@@ -117,7 +108,6 @@ const productData = [
     reviewCount: 9,
   },
   {
-    id: '10',
     name: 'number 10 of number 10 product',
     image: '/images/img10.jpg',
     description:

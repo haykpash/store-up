@@ -1,9 +1,15 @@
 import express from 'express'
-import products from './data/productData.js'
 import dotenv from 'dotenv'
+import colors from 'colors'
+import { notFound, errorHandler } from './middleware/errorMiddelware.js'
+import connectDB from './dbConfig/db.js'
 import path from 'path'
 
+import productRouts from './routs/productRouts.js'
+
 dotenv.config()
+
+connectDB()
 
 const app = express()
 
@@ -14,13 +20,11 @@ app.use(express.json())
 //   res.send("send Hayk's data")
 // })
 
-app.get('/api/products', (req, res) => {
-  res.json(products)
-})
-app.get('/api/products/:id', (req, res) => {
-  const product = products.find((i) => i.id === req.params.id)
-  res.json(product)
-})
+app.use('/api/products', productRouts)
+
+// Error Handlers
+app.use(notFound)
+app.use(errorHandler)
 
 const __dirname = path.resolve()
 //app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
@@ -39,4 +43,7 @@ if (process.env.NODE_ENV === 'production') {
 
 const PORT = process.env.PORT || 5000
 
-app.listen(PORT, console.log(`Mode ${process.env.NODE_ENV} , Port ${PORT}`))
+app.listen(
+  PORT,
+  console.log(`Mode ${process.env.NODE_ENV} , Port ${PORT}`.cyan.dim)
+)
