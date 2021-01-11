@@ -14,20 +14,13 @@ connectDB()
 const app = express()
 
 app.use(express.json())
-//-------//app.use(express.static(path.join(__dirname, 'build')))
-
-// app.get('/', (req, res) => {
-//   res.send("send Hayk's data")
-// })
 
 app.use('/api/products', productRouts)
 
 // Error Handlers
-app.use(notFound)
-app.use(errorHandler)
 
 const __dirname = path.resolve()
-//app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '/frontend/build')))
@@ -40,6 +33,9 @@ if (process.env.NODE_ENV === 'production') {
     res.send("send Hayk's data")
   })
 }
+
+app.use(notFound)
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000
 

@@ -2,7 +2,7 @@
 
 ## Features
 
-- Shoping app with React, Express, Node and MongoDB ( MERN )
+- Shoping app with React, Express, Redux-toolkit Node and MongoDB ( MERN )
 
 ```
 

@@ -21,27 +21,30 @@ export const listProducts = createAsyncThunk(
   }
 )
 
+const initialState = { products: [] }
+
 export const productSlice = createSlice({
   name: 'productList',
-  initialState: {
-    products: [],
-  },
+  initialState,
+  // {
+  //   products: [],
+  // },
   reducers: {
-    getRequest: (state) => {
+    getRequest: (state, action) => {
       state.loading = true
-      state.products = []
+      //state.products = []
     },
     getSuccess: (state, action) => {
       state.loading = false
       state.products = action.payload
     },
-    getFail: (state, { payload }) => {
+    getFail: (state, action) => {
       state.loading = false
-      state.error = payload
+      state.error = action.payload
     },
   },
 })
-//dispatch(listProducts())
+
 export const { getRequest, getSuccess, getFail } = productSlice.actions
 
 export const productListSelector = (state) => state.productList
