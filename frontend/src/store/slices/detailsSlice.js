@@ -3,11 +3,10 @@ import axios from 'axios'
 
 export const listProductsDetails = createAsyncThunk(
   'productDetails/listProductsDetails',
-  async (id, thunkAPI) => {
-    debugger
+  async (arg, thunkAPI) => {
     thunkAPI.dispatch(detailsRequest())
     try {
-      const { data } = await axios.get(`/api/products/${id}`)
+      const { data } = await axios.get(`/api/products/${arg}`)
 
       thunkAPI.dispatch(detailsSuccess(data))
     } catch (error) {
@@ -27,21 +26,13 @@ const initialState = { product: {} }
 export const productDetaileSlice = createSlice({
   name: 'productDetails',
   initialState,
-  // initialState: {
-  //   product: {
-  //     //reviews: []
-  //   },
-  // },
   reducers: {
     detailsRequest: (state, action) => {
       state.loading = true
-      //state.product = action.payload
-      //state.product = action.payload
-      //state = action.id
     },
     detailsSuccess: (state, action) => {
       state.loading = false
-      //state.product = action.payload
+      state.product = action.payload
     },
     detailsFail: (state, action) => {
       state.loading = false

@@ -12,11 +12,11 @@ const ProductCard = ({ product }) => {
         boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
       }}
     >
-      <NavLink to={`/product/${product.id}`}>
+      <NavLink to={`/product/${product._id}`}>
         <Card.Img src={product.image} variant='top' />
       </NavLink>
       <Card.Body>
-        <NavLink className='links' to={`/product/${product.id}`}>
+        <NavLink className='links' to={`/product/${product._id}`}>
           <Card.Title as='h5'>
             <strong>{product.name}</strong>
           </Card.Title>

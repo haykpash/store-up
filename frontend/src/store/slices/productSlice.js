@@ -3,14 +3,14 @@ import axios from 'axios'
 
 export const listProducts = createAsyncThunk(
   'productList/listProducts',
-  async (input, thunkAPI) => {
-    thunkAPI.dispatch(getRequest())
+  async (input, { dispatch }) => {
+    dispatch(getRequest())
     try {
       const { data } = await axios.get('/api/products')
 
-      thunkAPI.dispatch(getSuccess(data))
+      dispatch(getSuccess(data))
     } catch (error) {
-      thunkAPI.dispatch(
+      dispatch(
         getFail(
           error.response && error.response.data.message
             ? error.response.data.message
@@ -26,13 +26,9 @@ const initialState = { products: [] }
 export const productSlice = createSlice({
   name: 'productList',
   initialState,
-  // {
-  //   products: [],
-  // },
   reducers: {
     getRequest: (state, action) => {
       state.loading = true
-      //state.products = []
     },
     getSuccess: (state, action) => {
       state.loading = false

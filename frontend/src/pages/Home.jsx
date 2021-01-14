@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'react-bootstrap'
-import { listProducts, productListSelector } from '../store/slices/productSlice'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import ProductCard from '../components/ProductCard'
+import { listProducts, productListSelector } from '../store/slices/productSlice'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -17,7 +17,7 @@ const Home = () => {
 
   return (
     <>
-      <h1>New Products</h1>
+      <h1>All Products</h1>
       {loading ? (
         <Loader />
       ) : error ? (

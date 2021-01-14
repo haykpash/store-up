@@ -9,6 +9,10 @@ main {
 h4 {
   padding-top: 1rem;
 }
+h2 {
+  font-size: 1.8rem;
+  padding-top: 0.5rem 0;
+}
 
 .ratingStars span {
   margin: 0.1rem;
