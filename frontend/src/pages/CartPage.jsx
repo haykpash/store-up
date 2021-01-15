@@ -1,36 +1,35 @@
 import React, { useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, ListGroup, Image, Form, Button } from 'react-bootstrap'
 import Message from '../components/Message'
-import { addInCart } from '../store/slices/cartSlice'
-
-// , cartSliceSelector
+import {
+  addInCart,
+  cartSelector,
+  deleteFromCart,
+} from '../store/slices/cartSlice'
 
 const CartPage = ({ match, location, history }) => {
   const productId = match.params.id
 
-  const quantity = location.search ? Number(location.search.split('=')[1]) : 1
+  const qty = location.search ? Number(location.search.split('=')[1]) : 1
 
   const dispatch = useDispatch()
 
-  const cart = useSelector((state) => state.cart)
-  const { cartItems } = cart
-
-  //const { cartItems } = useSelector(cartSliceSelector)
+  const { cartItems } = useSelector(cartSelector)
 
   useEffect(() => {
-    const peoductAndQuantity = { id: productId, qty: quantity }
+    const productIdAndqty = { id: productId, qty: qty }
     if (productId) {
-      dispatch(addInCart(peoductAndQuantity))
+      dispatch(addInCart(productIdAndqty))
     }
-  }, [dispatch, productId, quantity])
+  }, [dispatch, productId, qty])
 
   const removeFromCartHandler = (id) => {
-    console.log('remove')
+    dispatch(deleteFromCart(id))
   }
 
-  const checkOutHandler = (id) => {
+  const checkOutHandler = () => {
     history.push('/login?redirect=shipping')
   }
 
@@ -41,22 +40,20 @@ const CartPage = ({ match, location, history }) => {
         {cartItems.length === 0 ? (
           <Message>
             Shopping cart is empty
-            <NavLink to='/'>
+            <Link to='/'>
               <strong>Go Back</strong>
-            </NavLink>
+            </Link>
           </Message>
         ) : (
           <ListGroup varitant='flush'>
             {cartItems.map((item) => (
-              <ListGroup.Item key={item.product}>
+              <ListGroup.Item variant='light' key={item.product}>
                 <Row>
                   <Col md={2}>
                     <Image src={item.image} alt={item.anme} fluid rounded />
                   </Col>
                   <Col md={3}>
-                    <NavLink to={`/product/${item.product}`}>
-                      {item.name}
-                    </NavLink>
+                    <Link to={`/product/${item.product}`}>{item.name}</Link>
                   </Col>
                   <Col md={2}>${item.price}</Col>
                   <Col md={2}>

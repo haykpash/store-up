@@ -3,14 +3,14 @@ import axios from 'axios'
 
 export const listProducts = createAsyncThunk(
   'productList/listProducts',
-  async (input, { dispatch }) => {
+  async (input, { dispatch, rejectWithValue }) => {
     dispatch(getRequest())
     try {
       const { data } = await axios.get('/api/products')
 
       dispatch(getSuccess(data))
     } catch (error) {
-      dispatch(
+      rejectWithValue(
         getFail(
           error.response && error.response.data.message
             ? error.response.data.message
@@ -29,6 +29,7 @@ export const productSlice = createSlice({
   reducers: {
     getRequest: (state, action) => {
       state.loading = true
+      action.products = []
     },
     getSuccess: (state, action) => {
       state.loading = false

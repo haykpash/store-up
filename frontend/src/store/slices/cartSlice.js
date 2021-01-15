@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 export const addInCart = createAsyncThunk(
-  'cartttt/addInCart',
+  'cart/addInCart',
   async (input, { dispatch, getState }) => {
     const { id, qty } = input
     const { data } = await axios.get(`/api/products/${id}`)
@@ -14,7 +14,7 @@ export const addInCart = createAsyncThunk(
         image: data.image,
         price: data.price,
         countInStock: data.countInStock,
-        qty: qty,
+        qty,
       })
     )
 
@@ -22,7 +22,20 @@ export const addInCart = createAsyncThunk(
   }
 )
 
-const initialState = { cartItems: [] }
+export const deleteFromCart = createAsyncThunk(
+  'cart/deleteItem',
+  async (id, { dispatch, getState }) => {
+    dispatch(deleteItem(id))
+
+    localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+  }
+)
+
+const cartItemsFromStorage = localStorage.getItem('cartItems')
+  ? JSON.parse(localStorage.getItem('cartItems'))
+  : []
+
+const initialState = { cartItems: cartItemsFromStorage }
 
 export const cartSlice = createSlice({
   name: 'cart',
@@ -30,32 +43,34 @@ export const cartSlice = createSlice({
   reducers: {
     addItem: (state, action) => {
       const item = action.payload
-      const existItem = state.cartItems.find((x) => x.prduct === item.product)
+      const existItem = state.cartItems.find((x) => x.product === item.product)
 
       if (existItem) {
         return {
-          ...state,
+          // ...state,
           cartItems: state.cartItems.map((x) =>
             x.product === existItem.product ? item : x
           ),
         }
       } else {
         return {
-          ...state,
+          // ...state,
           cartItems: [...state.cartItems, item],
         }
       }
     },
+
     deleteItem: (state, action) => {
       return {
-        ...state,
+        //...state,
         cartItems: state.cartItems.filter((x) => x.product !== action.payload),
       }
     },
   },
 })
+
 export const { addItem, deleteItem } = cartSlice.actions
 
-export const cartSliceSelector = (state) => state.cartSlice
+export const cartSelector = (state) => state.cart
 
 export default cartSlice.reducer

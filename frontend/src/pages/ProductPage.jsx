@@ -73,14 +73,14 @@ const ProductPage = ({ history, match }) => {
                   <Row>
                     <Col>Status:</Col>
                     <Col>
-                      {product.inStock > 0 ? 'in stock' : 'out of stock'}
+                      {product.countInStock > 0 ? 'in stock' : 'out of stock'}
                     </Col>
                   </Row>
                 </ListGroup.Item>
                 {product.countInStock > 0 && (
                   <ListGroup.Item>
                     <Row>
-                      <Col>Quantity</Col>
+                      <Col>Qty</Col>
                       <Col>
                         <Form.Control
                           as='select'
@@ -97,13 +97,14 @@ const ProductPage = ({ history, match }) => {
                     </Row>
                   </ListGroup.Item>
                 )}
+
                 <ListGroup.Item>
                   <Button
                     onClick={addInCartHandler}
                     className='btn-block'
                     variant='warning'
                     type='butten'
-                    disabled={product.inStock === 0}
+                    disabled={product.countInStock === 0}
                   >
                     Add to list
                   </Button>

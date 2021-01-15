@@ -6,10 +6,10 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    phoneNumber: {
-      type: Number,
-      repuired: true,
-    },
+    // phoneNumber: {
+    //   type: Number,
+    //   repuired: true,
+    // },
     email: {
       type: String,
       required: true,
