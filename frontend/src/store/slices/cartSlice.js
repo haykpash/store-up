@@ -1,35 +1,28 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-export const addInCart = createAsyncThunk(
-  'cart/addInCart',
-  async (input, { dispatch, getState }) => {
-    const { id, qty } = input
-    const { data } = await axios.get(`/api/products/${id}`)
+export const addInCart = (id, qty) => async (dispatch, getState) => {
+  const { data } = await axios.get(`/api/products/${id}`)
 
-    dispatch(
-      addItem({
-        product: data._id,
-        name: data.name,
-        image: data.image,
-        price: data.price,
-        countInStock: data.countInStock,
-        qty,
-      })
-    )
+  dispatch(
+    addItem({
+      product: data._id,
+      name: data.name,
+      image: data.image,
+      price: data.price,
+      countInStock: data.countInStock,
+      qty,
+    })
+  )
 
-    localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
-  }
-)
+  localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+}
 
-export const deleteFromCart = createAsyncThunk(
-  'cart/deleteItem',
-  async (id, { dispatch, getState }) => {
-    dispatch(deleteItem(id))
+export const deleteFromCart = (id) => (dispatch, getState) => {
+  dispatch(deleteItem(id))
 
-    localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
-  }
-)
+  localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+}
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')
   ? JSON.parse(localStorage.getItem('cartItems'))
@@ -47,14 +40,12 @@ export const cartSlice = createSlice({
 
       if (existItem) {
         return {
-          // ...state,
           cartItems: state.cartItems.map((x) =>
             x.product === existItem.product ? item : x
           ),
         }
       } else {
         return {
-          // ...state,
           cartItems: [...state.cartItems, item],
         }
       }
@@ -62,7 +53,6 @@ export const cartSlice = createSlice({
 
     deleteItem: (state, action) => {
       return {
-        //...state,
         cartItems: state.cartItems.filter((x) => x.product !== action.payload),
       }
     },

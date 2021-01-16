@@ -1,25 +1,22 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-export const listProductsDetails = createAsyncThunk(
-  'productDetails/listProductsDetails',
-  async (arg, thunkAPI) => {
-    thunkAPI.dispatch(detailsRequest())
-    try {
-      const { data } = await axios.get(`/api/products/${arg}`)
+export const listProductsDetails = (id) => async (dispatch) => {
+  dispatch(detailsRequest())
+  try {
+    const { data } = await axios.get(`/api/products/${id}`)
 
-      thunkAPI.dispatch(detailsSuccess(data))
-    } catch (error) {
-      thunkAPI.dispatch(
-        detailsSuccess(
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message
-        )
+    dispatch(detailsSuccess(data))
+  } catch (error) {
+    dispatch(
+      detailsSuccess(
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
       )
-    }
+    )
   }
-)
+}
 
 const initialState = { product: {} }
 

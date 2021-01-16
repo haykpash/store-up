@@ -19,9 +19,8 @@ const CartPage = ({ match, location, history }) => {
   const { cartItems } = useSelector(cartSelector)
 
   useEffect(() => {
-    const productIdAndqty = { id: productId, qty: qty }
     if (productId) {
-      dispatch(addInCart(productIdAndqty))
+      dispatch(addInCart(productId, qty))
     }
   }, [dispatch, productId, qty])
 
