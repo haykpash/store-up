@@ -3,9 +3,10 @@ import dotenv from 'dotenv'
 import colors from 'colors'
 import { notFound, errorHandler } from './middleware/errorMiddelware.js'
 import connectDB from './dbConfig/db.js'
-import path from 'path'
+//import path from 'path'
 
-import productRouts from './routs/productRouts.js'
+import productRoutes from './routes/productRoutes.js'
+import userRoutes from './routes/userRoutes.js'
 
 dotenv.config()
 
@@ -15,24 +16,29 @@ const app = express()
 
 app.use(express.json())
 
-app.use('/api/products', productRouts)
+app.get('/', (req, res) => {
+  res.send("send Hayk's data")
+})
+
+app.use('/api/products', productRoutes)
+app.use('/api/users', userRoutes)
 
 // Error Handlers
 
-const __dirname = path.resolve()
-app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
+// const __dirname = path.resolve()
+// app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '/frontend/build')))
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static(path.join(__dirname, '/frontend/build')))
 
-  app.get('*', (req, res) =>
-    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
-  )
-} else {
-  app.get('/', (req, res) => {
-    res.send("send Hayk's data")
-  })
-}
+//   app.get('*', (req, res) =>
+//     res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+//   )
+// } else {
+// app.get('/', (req, res) => {
+//   res.send("send Hayk's data")
+// })
+// }
 
 app.use(notFound)
 app.use(errorHandler)
