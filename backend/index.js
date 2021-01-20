@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 import colors from 'colors'
 import { notFound, errorHandler } from './middleware/errorMiddelware.js'
 import connectDB from './dbConfig/db.js'
-//import path from 'path'
+import path from 'path'
 
 import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
