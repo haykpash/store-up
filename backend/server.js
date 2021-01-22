@@ -16,9 +16,9 @@ const app = express()
 
 app.use(express.json())
 
-app.get('/', (req, res) => {
-  res.send("send Hayk's data")
-})
+// app.get('/', (req, res) => {
+//   res.send("send Hayk's data")
+// })
 
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)

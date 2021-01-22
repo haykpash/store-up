@@ -2,14 +2,15 @@ import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 export const listProductsDetails = (id) => async (dispatch) => {
-  dispatch(detailsRequest())
   try {
+    dispatch(detailsRequest())
+
     const { data } = await axios.get(`/api/products/${id}`)
 
     dispatch(detailsSuccess(data))
   } catch (error) {
     dispatch(
-      detailsSuccess(
+      detailsFail(
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message
@@ -24,7 +25,7 @@ export const productDetaileSlice = createSlice({
   name: 'productDetails',
   initialState,
   reducers: {
-    detailsRequest: (state, action) => {
+    detailsRequest: (state) => {
       state.loading = true
     },
     detailsSuccess: (state, action) => {
