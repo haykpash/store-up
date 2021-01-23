@@ -57,6 +57,4 @@ export const {
   registerFail,
 } = registerSlice.actions
 
-export const userRegisterSelector = (state) => state.userRegister
-
 export default registerSlice.reducer

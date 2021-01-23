@@ -45,6 +45,4 @@ export const {
   detailsFail,
 } = productDetaileSlice.actions
 
-export const productDetailsSelector = (state) => state.productDetails
-
 export default productDetaileSlice.reducer

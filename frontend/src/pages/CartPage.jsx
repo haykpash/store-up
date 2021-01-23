@@ -3,11 +3,7 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, ListGroup, Image, Form, Button } from 'react-bootstrap'
 import Message from '../components/Message'
-import {
-  addInCart,
-  cartSelector,
-  deleteFromCart,
-} from '../store/slices/cartSlice'
+import { addInCart, deleteFromCart } from '../store/slices/cartSlice'
 
 const CartPage = ({ match, location, history }) => {
   const productId = match.params.id
@@ -16,7 +12,7 @@ const CartPage = ({ match, location, history }) => {
 
   const dispatch = useDispatch()
 
-  const { cartItems } = useSelector(cartSelector)
+  const { cartItems } = useSelector((state) => state.cart)
 
   useEffect(() => {
     if (productId) {

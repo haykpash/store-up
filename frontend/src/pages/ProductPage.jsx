@@ -5,17 +5,16 @@ import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import RatingStars from '../components/RatingStars'
-import {
-  listProductsDetails,
-  productDetailsSelector,
-} from '../store/slices/detailsSlice'
+import { listProductsDetails } from '../store/slices/detailsSlice'
 
 const ProductPage = ({ history, match }) => {
   const [qty, setQty] = useState(1)
 
   const dispatch = useDispatch()
 
-  const { loading, error, product } = useSelector(productDetailsSelector)
+  const { loading, error, product } = useSelector(
+    (state) => state.productDetails
+  )
 
   useEffect(() => {
     dispatch(listProductsDetails(match.params.id))

@@ -41,6 +41,4 @@ export const productSlice = createSlice({
 
 export const { getRequest, getSuccess, getFail } = productSlice.actions
 
-export const productListSelector = (state) => state.productList
-
 export default productSlice.reducer

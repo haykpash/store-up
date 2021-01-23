@@ -69,6 +69,4 @@ export const {
   logoutSuccses,
 } = loginSlice.actions
 
-export const userLoginSelector = (state) => state.userLogin
-
 export default loginSlice.reducer

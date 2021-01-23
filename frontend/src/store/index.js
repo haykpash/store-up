@@ -4,23 +4,18 @@ import productDetailsReducer from './slices/detailsSlice'
 import cartReducer from './slices/cartSlice'
 import userLoginReducer from './slices/userSlice'
 import userRegisterReducer from './slices/registerSlice'
-
-// const cartItemsFromStorage = localStorage.getItem('cartItems')
-//   ? JSON.parse(localStorage.getItem('cartItems'))
-//   : []
-
-// const initialState = {
-//   cart: { cartItems: 'cartItemsFromStorage' },
-// }
+import userDetailsReducer from './slices/userDetailsSlice'
+import userUpdateProfileReducer from './slices/updateProfileSlice'
 
 const store = configureStore({
   reducer: {
-    //initialState,
     productList: productsListReducer,
     productDetails: productDetailsReducer,
     cart: cartReducer,
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
+    userDetails: userDetailsReducer,
+    userUpdateProfile: userUpdateProfileReducer,
   },
 
   middleware: [...getDefaultMiddleware()],

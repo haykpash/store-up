@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import FormContainer from '../components/FormContainar'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { login, userLoginSelector } from '../store/slices/userSlice'
+import { login } from '../store/slices/userSlice'
 
 const LoginPage = ({ location, history }) => {
   const [email, setEmail] = useState('')
@@ -13,7 +13,7 @@ const LoginPage = ({ location, history }) => {
 
   const dispatch = useDispatch()
 
-  const { loading, error, userInfo } = useSelector(userLoginSelector)
+  const { loading, error, userInfo } = useSelector((state) => state.userLogin)
 
   const redirect = location.search ? location.search.split('=')[1] : '/'
 
