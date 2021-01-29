@@ -1,4 +1,4 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 import productsListReducer from './slices/productSlice'
 import productDetailsReducer from './slices/detailsSlice'
 import cartReducer from './slices/cartSlice'
@@ -17,8 +17,6 @@ const store = configureStore({
     userDetails: userDetailsReducer,
     userUpdateProfile: userUpdateProfileReducer,
   },
-
-  middleware: [...getDefaultMiddleware()],
 })
 
 export default store

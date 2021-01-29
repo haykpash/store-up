@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export const login = (email, password) => async (dispatch) => {
   try {
-    //dispatch(loginRequest())
+    dispatch(loginRequest())
 
     const config = {
       headers: {
@@ -18,7 +18,7 @@ export const login = (email, password) => async (dispatch) => {
     )
     dispatch(loginSuccess(data))
 
-    // localStorage.setItem('userInfo', JSON.stringify(data))
+    localStorage.setItem('userInfo', JSON.stringify(data))
   } catch (error) {
     dispatch(
       loginFail(
@@ -31,8 +31,8 @@ export const login = (email, password) => async (dispatch) => {
 }
 
 export const logout = () => (dispatch) => {
-  // localStorage.removeItem('userInfo')
   dispatch(logoutSuccses())
+  localStorage.removeItem('userInfo')
 }
 
 const userInfoFromStorage = localStorage.getItem('userInfo')
@@ -43,21 +43,19 @@ export const loginSlice = createSlice({
   name: 'userLogin',
   initialState: { userInfo: userInfoFromStorage },
   reducers: {
-    // loginRequest: (state) => {
-    //   state.loading = true
-    // },
+    loginRequest: (state) => {
+      state.loading = true
+    },
     loginSuccess: (state, action) => {
-      //state.loading = false
+      state.loading = false
       state.userInfo = action.payload
-      localStorage.setItem('userInfo', JSON.stringify(action.payload))
     },
     loginFail: (state, action) => {
-      //state.loading = false
+      state.loading = false
       state.error = action.payload
     },
     logoutSuccses: (state) => {
       state.userInfo = null
-      localStorage.removeItem('userInfo')
     },
   },
 })

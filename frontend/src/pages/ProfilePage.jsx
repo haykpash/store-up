@@ -45,7 +45,7 @@ const ProfilePage = ({ location, history }) => {
 
   return (
     <Row>
-      <Col md={3}>
+      <Col md={5} lg={4}>
         <h3>User Profile</h3>
         {message && <Message variant='danger'>{message}</Message>}
         {error && <Message variant='danger'>{error}</Message>}
@@ -97,7 +97,7 @@ const ProfilePage = ({ location, history }) => {
           </Button>
         </Form>
       </Col>
-      <Col md={9}>
+      <Col md={7} lg={8}>
         <h3>My Orders</h3>
       </Col>
     </Row>

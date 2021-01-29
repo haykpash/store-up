@@ -26,6 +26,7 @@ export const productDetaileSlice = createSlice({
   initialState,
   reducers: {
     detailsRequest: (state) => {
+      //...state
       state.loading = true
     },
     detailsSuccess: (state, action) => {

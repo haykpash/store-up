@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, ListGroup, Image, Form, Button } from 'react-bootstrap'
 import Message from '../components/Message'
@@ -34,10 +34,8 @@ const CartPage = ({ match, location, history }) => {
         <h1>Shopping Cart</h1>
         {cartItems.length === 0 ? (
           <Message>
-            Shopping cart is empty
-            <Link to='/'>
-              <strong>Go Back</strong>
-            </Link>
+            Your cart is empty
+            <NavLink to='/'>Go Back</NavLink>
           </Message>
         ) : (
           <ListGroup varitant='flush'>
@@ -48,7 +46,9 @@ const CartPage = ({ match, location, history }) => {
                     <Image src={item.image} alt={item.anme} fluid rounded />
                   </Col>
                   <Col md={3}>
-                    <Link to={`/product/${item.product}`}>{item.name}</Link>
+                    <NavLink to={`/product/${item.product}`}>
+                      {item.name}
+                    </NavLink>
                   </Col>
                   <Col md={2}>${item.price}</Col>
                   <Col md={2}>

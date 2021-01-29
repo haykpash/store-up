@@ -24,11 +24,24 @@ export const deleteFromCart = (id) => (dispatch, getState) => {
   localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
 }
 
+export const saveShippingAddress = (data) => (dispatch) => {
+  dispatch(cartSaveShippingAddress(data))
+
+  localStorage.setItem('shippingAddress', JSON.stringify(data))
+}
+
 const cartItemsFromStorage = localStorage.getItem('cartItems')
   ? JSON.parse(localStorage.getItem('cartItems'))
   : []
 
-const initialState = { cartItems: cartItemsFromStorage }
+const shippingAddressFromStorage = localStorage.getItem('shippingAddress')
+  ? JSON.parse(localStorage.getItem('shippingAddress'))
+  : {}
+
+const initialState = {
+  cartItems: cartItemsFromStorage,
+  shippingAddress: shippingAddressFromStorage,
+}
 
 export const cartSlice = createSlice({
   name: 'cart',
@@ -40,12 +53,14 @@ export const cartSlice = createSlice({
 
       if (existItem) {
         return {
+          ...state,
           cartItems: state.cartItems.map((x) =>
             x.product === existItem.product ? item : x
           ),
         }
       } else {
         return {
+          ...state,
           cartItems: [...state.cartItems, item],
         }
       }
@@ -53,12 +68,23 @@ export const cartSlice = createSlice({
 
     deleteItem: (state, action) => {
       return {
+        ...state,
         cartItems: state.cartItems.filter((x) => x.product !== action.payload),
+      }
+    },
+    cartSaveShippingAddress: (state, action) => {
+      return {
+        ...state,
+        shippingAddress: action.payload,
       }
     },
   },
 })
 
-export const { addItem, deleteItem } = cartSlice.actions
+export const {
+  addItem,
+  deleteItem,
+  cartSaveShippingAddress,
+} = cartSlice.actions
 
 export default cartSlice.reducer
