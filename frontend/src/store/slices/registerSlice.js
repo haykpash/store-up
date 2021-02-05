@@ -2,6 +2,28 @@ import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { loginSuccess } from './userSlice'
 
+export const registerSlice = createSlice({
+  name: 'userRegister',
+  initialState: {},
+  reducers: {
+    registerRequest: (state) => {
+      state.loading = true
+    },
+    registerSuccess: (state, action) => {
+      state.loading = false
+      state.userInfo = action.payload
+    },
+    registerFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+  },
+})
+
+const { registerRequest, registerSuccess, registerFail } = registerSlice.actions
+
+//-----------Action Creators----------//
+
 export const register = (name, email, password) => async (dispatch) => {
   try {
     dispatch(registerRequest())
@@ -32,29 +54,3 @@ export const register = (name, email, password) => async (dispatch) => {
     )
   }
 }
-
-export const registerSlice = createSlice({
-  name: 'userRegister',
-  initialState: {},
-  reducers: {
-    registerRequest: (state) => {
-      state.loading = true
-    },
-    registerSuccess: (state, action) => {
-      state.loading = false
-      state.userInfo = action.payload
-    },
-    registerFail: (state, action) => {
-      state.loading = false
-      state.error = action.payload
-    },
-  },
-})
-
-export const {
-  registerRequest,
-  registerSuccess,
-  registerFail,
-} = registerSlice.actions
-
-export default registerSlice.reducer

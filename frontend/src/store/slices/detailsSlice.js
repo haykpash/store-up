@@ -1,6 +1,32 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
+export const productDetaileSlice = createSlice({
+  name: 'productDetails',
+  initialState: { product: { reviews: [] } },
+  reducers: {
+    detailsRequest: (state) => {
+      state.loading = true
+    },
+    detailsSuccess: (state, action) => {
+      state.loading = false
+      state.product = action.payload
+    },
+    detailsFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+  },
+})
+
+const {
+  detailsRequest,
+  detailsSuccess,
+  detailsFail,
+} = productDetaileSlice.actions
+
+//--------------Action Creators-----------//
+
 export const listProductsDetails = (id) => async (dispatch) => {
   try {
     dispatch(detailsRequest())
@@ -18,32 +44,3 @@ export const listProductsDetails = (id) => async (dispatch) => {
     )
   }
 }
-
-const initialState = { product: {} }
-
-export const productDetaileSlice = createSlice({
-  name: 'productDetails',
-  initialState,
-  reducers: {
-    detailsRequest: (state) => {
-      //...state
-      state.loading = true
-    },
-    detailsSuccess: (state, action) => {
-      state.loading = false
-      state.product = action.payload
-    },
-    detailsFail: (state, action) => {
-      state.loading = false
-      state.error = action.payload
-    },
-  },
-})
-
-export const {
-  detailsRequest,
-  detailsSuccess,
-  detailsFail,
-} = productDetaileSlice.actions
-
-export default productDetaileSlice.reducer

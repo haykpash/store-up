@@ -1,6 +1,33 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
+export const userUpdateProfileSlice = createSlice({
+  name: 'userUpdate',
+  initialState: {},
+  reducers: {
+    userUpdateProfileRequest: (state) => {
+      state.loading = true
+    },
+    userUpdateProfileSuccess: (state, action) => {
+      state.loading = false
+      state.success = true
+      state.userInfo = action.payload
+    },
+    userUpdateProfileFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+  },
+})
+
+const {
+  userUpdateProfileRequest,
+  userUpdateProfileSuccess,
+  userUpdateProfileFail,
+} = userUpdateProfileSlice.actions
+
+//-----------Action Creators----------//
+
 export const updateUserProfile = (user) => async (dispatch, getState) => {
   try {
     dispatch(userUpdateProfileRequest())
@@ -29,30 +56,3 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
     )
   }
 }
-
-export const userUpdateProfileSlice = createSlice({
-  name: 'userUpdate',
-  initialState: {},
-  reducers: {
-    userUpdateProfileRequest: (state) => {
-      state.loading = true
-    },
-    userUpdateProfileSuccess: (state, action) => {
-      state.loading = false
-      state.success = true
-      state.userInfo = action.payload
-    },
-    userUpdateProfileFail: (state, action) => {
-      state.loading = false
-      state.error = action.payload
-    },
-  },
-})
-
-export const {
-  userUpdateProfileRequest,
-  userUpdateProfileSuccess,
-  userUpdateProfileFail,
-} = userUpdateProfileSlice.actions
-
-export default userUpdateProfileSlice.reducer

@@ -1,22 +1,25 @@
 import { configureStore } from '@reduxjs/toolkit'
-import productsListReducer from './slices/productSlice'
-import productDetailsReducer from './slices/detailsSlice'
-import cartReducer from './slices/cartSlice'
-import userLoginReducer from './slices/userSlice'
-import userRegisterReducer from './slices/registerSlice'
-import userDetailsReducer from './slices/userDetailsSlice'
-import userUpdateProfileReducer from './slices/updateProfileSlice'
+import { productSlice } from './slices/productSlice'
+import { productDetaileSlice } from './slices/detailsSlice'
+import { cartSlice } from './slices/cartSlice'
+import { loginSlice } from './slices/userSlice'
+import { registerSlice } from './slices/registerSlice'
+import { userDetailsSlice } from './slices/userDetailsSlice'
+import { userUpdateProfileSlice } from './slices/updateProfileSlice'
+import { orderSlice } from './slices/orderSlice'
 
 const store = configureStore({
   reducer: {
-    productList: productsListReducer,
-    productDetails: productDetailsReducer,
-    cart: cartReducer,
-    userLogin: userLoginReducer,
-    userRegister: userRegisterReducer,
-    userDetails: userDetailsReducer,
-    userUpdateProfile: userUpdateProfileReducer,
+    productList: productSlice.reducer,
+    productDetails: productDetaileSlice.reducer,
+    cart: cartSlice.reducer,
+    userLogin: loginSlice.reducer,
+    userRegister: registerSlice.reducer,
+    userDetails: userDetailsSlice.reducer,
+    userUpdateProfile: userUpdateProfileSlice.reducer,
+    order: orderSlice.reducer,
   },
+  //middleware: [...getDefaultMiddleware()],
 })
 
 export default store

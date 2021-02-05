@@ -1,6 +1,40 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
+const userInfoFromStorage = localStorage.getItem('userInfo')
+  ? JSON.parse(localStorage.getItem('userInfo'))
+  : null
+
+export const loginSlice = createSlice({
+  name: 'userLogin',
+  initialState: { userInfo: userInfoFromStorage },
+  reducers: {
+    loginRequest: (state) => {
+      state.loading = true
+    },
+    loginSuccess: (state, action) => {
+      state.loading = false
+      state.userInfo = action.payload
+    },
+    loginFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    logoutSuccses: (state) => {
+      state.userInfo = null
+    },
+  },
+})
+
+export const {
+  loginRequest,
+  loginSuccess,
+  loginFail,
+  logoutSuccses,
+} = loginSlice.actions
+
+//----------------Action Creators---------------//
+
 export const login = (email, password) => async (dispatch) => {
   try {
     dispatch(loginRequest())
@@ -34,37 +68,3 @@ export const logout = () => (dispatch) => {
   dispatch(logoutSuccses())
   localStorage.removeItem('userInfo')
 }
-
-const userInfoFromStorage = localStorage.getItem('userInfo')
-  ? JSON.parse(localStorage.getItem('userInfo'))
-  : null
-
-export const loginSlice = createSlice({
-  name: 'userLogin',
-  initialState: { userInfo: userInfoFromStorage },
-  reducers: {
-    loginRequest: (state) => {
-      state.loading = true
-    },
-    loginSuccess: (state, action) => {
-      state.loading = false
-      state.userInfo = action.payload
-    },
-    loginFail: (state, action) => {
-      state.loading = false
-      state.error = action.payload
-    },
-    logoutSuccses: (state) => {
-      state.userInfo = null
-    },
-  },
-})
-
-export const {
-  loginRequest,
-  loginSuccess,
-  loginFail,
-  logoutSuccses,
-} = loginSlice.actions
-
-export default loginSlice.reducer

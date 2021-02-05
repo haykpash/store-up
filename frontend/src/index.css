@@ -31,3 +31,9 @@ h2 {
   color: #000;
   opacity: 0.8;
 }
+
+a.nav-link,
+a {
+  color: rgba(9, 6, 20, 0.872);
+  font-size: medium;
+}
