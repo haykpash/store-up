@@ -49,6 +49,8 @@ export const cartSlice = createSlice({
     },
 
     cartSaveOrderSummary: (state, action) => {
+      //---------------Calculate price----------------//
+
       const decimalsFormater = (num) => {
         return (Math.round(num * 100) / 100).toFixed(2)
       }
@@ -88,7 +90,7 @@ export const {
 /*  export default cartSlice.reducer   */
 /***************************************/
 
-//------------Action Creators-------------
+//------------Action Creators-------------//
 
 export const addInCart = (id, qty) => async (dispatch, getState) => {
   const { data } = await axios.get(`/api/products/${id}`)

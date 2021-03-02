@@ -1,32 +1,42 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-export const orderSlice = createSlice({
+export const orderPaySlice = createSlice({
   name: 'order',
   initialState: {},
   reducers: {
-    orderRequest: (state) => {
+    orderPayRequest: (state) => {
       state.loading = true
     },
-    orderSuccess: (state, action) => {
+    orderPaySuccess: (state) => {
       state.loading = false
       state.success = true
-      state.order = action.payload
     },
-    orderFail: (state, action) => {
+    orderPayFail: (state, action) => {
       state.loading = false
       state.error = action.payload
+    },
+    orderPayReset: () => {
+      return {}
     },
   },
 })
 
-const { orderRequest, orderSuccess, orderFail } = orderSlice.actions
+export const {
+  orderPayRequest,
+  orderPaySuccess,
+  orderPayFail,
+  orderPayReset,
+} = orderPaySlice.actions
 
 //--------------Action Creators-----------//
 
-export const createOrder = (order) => async (dispatch, getState) => {
+export const payOrder = (orderId, paymentResult) => async (
+  dispatch,
+  getState
+) => {
   try {
-    dispatch(orderRequest())
+    dispatch(orderPayRequest())
 
     const {
       userLogin: { userInfo },
@@ -39,12 +49,16 @@ export const createOrder = (order) => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.post(`/api/orders`, order, config)
+    const { data } = await axios.put(
+      `/api/orders/${orderId}/pay`,
+      paymentResult,
+      config
+    )
 
-    dispatch(orderSuccess(data))
+    dispatch(orderPaySuccess(data))
   } catch (error) {
     dispatch(
-      orderFail(
+      orderPayFail(
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message

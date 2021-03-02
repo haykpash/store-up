@@ -17,13 +17,17 @@ const app = express()
 
 app.use(express.json())
 
-// app.get('/', (req, res) => {
-//   res.send("send Hayk's data")
-// })
+app.get('/', (req, res) => {
+  res.send("send Hayk's data")
+})
 
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)
+
+app.get('/api/config/paypal', (req, res) =>
+  res.send(process.env.PAYPAL_CLIENT_ID)
+)
 
 // Error Handlers
 

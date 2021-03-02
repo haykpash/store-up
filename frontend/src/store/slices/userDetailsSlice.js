@@ -16,13 +16,17 @@ export const userDetailsSlice = createSlice({
       state.loading = false
       state.error = action.payload
     },
+    userDetailsReset: (state) => {
+      state.user = {}
+    },
   },
 })
 
-const {
+export const {
   userDetailsRequest,
   userDetailsSuccess,
   userDetailsFail,
+  userDetailsReset,
 } = userDetailsSlice.actions
 
 //-----------Action Creators----------//

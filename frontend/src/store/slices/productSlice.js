@@ -7,7 +7,6 @@ export const productSlice = createSlice({
   reducers: {
     getRequest: (state, action) => {
       state.loading = true
-      //state.products = []
     },
     getSuccess: (state, action) => {
       state.loading = false

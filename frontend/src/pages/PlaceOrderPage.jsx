@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import CheckOutSteps from '../components/CheckOutSteps'
 import { createOrder } from '../store/slices/orderSlice'
+//import { userDetailsReset } from '../store/slices/userDetailsSlice'
 
 const PlaceOrderPage = ({ history }) => {
   const dispatch = useDispatch()
@@ -23,6 +24,9 @@ const PlaceOrderPage = ({ history }) => {
   useEffect(() => {
     if (success) {
       history.push(`/order/${order._id}`)
+      //dispatch(userDetailsReset())
+      // dispatch({ type: ORDER_CREATE_RESET })
+      //dispatch()
     }
     // eslint-disable-next-line
   }, [history, success])
@@ -36,7 +40,7 @@ const PlaceOrderPage = ({ history }) => {
         itemsPrice: cart.orderSummary.itemsPrice,
         shippingPrice: cart.orderSummary.shippingPrice,
         taxPrice: cart.orderSummary.taxPrice,
-        totalePrice: cart.orderSummary.totalPrice,
+        totalPrice: cart.orderSummary.totalPrice,
       })
     )
   }

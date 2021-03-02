@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
+import { userDetailsReset } from './userDetailsSlice.js'
+import { orderListMyReset } from './orderListMySlice.js'
 
 const userInfoFromStorage = localStorage.getItem('userInfo')
   ? JSON.parse(localStorage.getItem('userInfo'))
@@ -66,5 +68,7 @@ export const login = (email, password) => async (dispatch) => {
 
 export const logout = () => (dispatch) => {
   dispatch(logoutSuccses())
+  dispatch(userDetailsReset())
+  dispatch(orderListMyReset())
   localStorage.removeItem('userInfo')
 }

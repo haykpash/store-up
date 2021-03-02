@@ -7,6 +7,9 @@ import { registerSlice } from './slices/registerSlice'
 import { userDetailsSlice } from './slices/userDetailsSlice'
 import { userUpdateProfileSlice } from './slices/updateProfileSlice'
 import { orderSlice } from './slices/orderSlice'
+import { orderDetailsSlice } from './slices/orderDetailsSlice'
+import { orderPaySlice } from './slices/orderPaySlice'
+import { orderListMySlice } from './slices/orderListMySlice'
 
 const store = configureStore({
   reducer: {
@@ -18,6 +21,9 @@ const store = configureStore({
     userDetails: userDetailsSlice.reducer,
     userUpdateProfile: userUpdateProfileSlice.reducer,
     order: orderSlice.reducer,
+    orderDetails: orderDetailsSlice.reducer,
+    orderPay: orderPaySlice.reducer,
+    orderListMy: orderListMySlice.reducer,
   },
   //middleware: [...getDefaultMiddleware()],
 })

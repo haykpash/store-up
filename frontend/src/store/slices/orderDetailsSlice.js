@@ -1,32 +1,40 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-export const orderSlice = createSlice({
+export const orderDetailsSlice = createSlice({
   name: 'order',
-  initialState: {},
+  initialState: {
+    loading: true,
+    orderItems: [],
+    shippingAddress: {},
+    order: {},
+  },
   reducers: {
-    orderRequest: (state) => {
+    orderDetailsRequest: (state) => {
       state.loading = true
     },
-    orderSuccess: (state, action) => {
+    orderDetailsSuccess: (state, action) => {
       state.loading = false
-      state.success = true
       state.order = action.payload
     },
-    orderFail: (state, action) => {
+    orderDetailsFail: (state, action) => {
       state.loading = false
       state.error = action.payload
     },
   },
 })
 
-const { orderRequest, orderSuccess, orderFail } = orderSlice.actions
+const {
+  orderDetailsRequest,
+  orderDetailsSuccess,
+  orderDetailsFail,
+} = orderDetailsSlice.actions
 
 //--------------Action Creators-----------//
 
-export const createOrder = (order) => async (dispatch, getState) => {
+export const getOrderDetails = (id) => async (dispatch, getState) => {
   try {
-    dispatch(orderRequest())
+    dispatch(orderDetailsRequest())
 
     const {
       userLogin: { userInfo },
@@ -34,17 +42,16 @@ export const createOrder = (order) => async (dispatch, getState) => {
 
     const config = {
       headers: {
-        'Content-Type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`,
       },
     }
 
-    const { data } = await axios.post(`/api/orders`, order, config)
+    const { data } = await axios.get(`/api/orders/${id}`, config)
 
-    dispatch(orderSuccess(data))
+    dispatch(orderDetailsSuccess(data))
   } catch (error) {
     dispatch(
-      orderFail(
+      orderDetailsFail(
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message
