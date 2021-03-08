@@ -10,6 +10,9 @@ import { orderSlice } from './slices/orderSlice'
 import { orderDetailsSlice } from './slices/orderDetailsSlice'
 import { orderPaySlice } from './slices/orderPaySlice'
 import { orderListMySlice } from './slices/orderListMySlice'
+import { userListSlice } from './slices/userListSlice'
+import { userDeleteSlice } from './slices/userDeleteSlice'
+import { userUpdateSlice } from './slices/userUpdateSlice'
 
 const store = configureStore({
   reducer: {
@@ -20,6 +23,9 @@ const store = configureStore({
     userRegister: registerSlice.reducer,
     userDetails: userDetailsSlice.reducer,
     userUpdateProfile: userUpdateProfileSlice.reducer,
+    userList: userListSlice.reducer,
+    userDelete: userDeleteSlice.reducer,
+    userUpdate: userUpdateSlice.reducer,
     order: orderSlice.reducer,
     orderDetails: orderDetailsSlice.reducer,
     orderPay: orderPaySlice.reducer,

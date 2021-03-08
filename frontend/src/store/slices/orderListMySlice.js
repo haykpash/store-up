@@ -17,6 +17,7 @@ export const orderListMySlice = createSlice({
       state.error = action.payload
     },
     orderListMyReset: (state) => {
+      // return
       state.orders = []
     },
   },

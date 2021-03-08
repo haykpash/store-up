@@ -1,39 +1,40 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
+import { userDetailsSuccess } from './userDetailsSlice'
 
-export const userDetailsSlice = createSlice({
+export const userUpdateSlice = createSlice({
   name: 'userDetails',
   initialState: { user: {} },
   reducers: {
-    userDetailsRequest: (state) => {
+    userUpdateRequest: (state) => {
       state.loading = true
     },
-    userDetailsSuccess: (state, action) => {
+    userUpdateSuccess: (state) => {
       state.loading = false
-      state.user = action.payload
+      state.success = true
     },
-    userDetailsFail: (state, action) => {
+    userUpdateFail: (state, action) => {
       state.loading = false
       state.error = action.payload
     },
-    userDetailsReset: (state) => {
+    userUpdateReset: () => {
       return {}
     },
   },
 })
 
 export const {
-  userDetailsRequest,
-  userDetailsSuccess,
-  userDetailsFail,
-  userDetailsReset,
-} = userDetailsSlice.actions
+  userUpdateRequest,
+  userUpdateSuccess,
+  userUpdateFail,
+  userUpdateReset,
+} = userUpdateSlice.actions
 
 //-----------Action Creators----------//
 
-export const getUserDetails = (id) => async (dispatch, getState) => {
+export const updateUser = (user) => async (dispatch, getState) => {
   try {
-    dispatch(userDetailsRequest())
+    dispatch(userUpdateRequest())
 
     const {
       userLogin: { userInfo },
@@ -46,12 +47,13 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.get(`/api/users/${id}`, config)
+    const { data } = await axios.put(`/api/users/${user._id}`, user, config)
 
+    dispatch(userUpdateSuccess())
     dispatch(userDetailsSuccess(data))
   } catch (error) {
     dispatch(
-      userDetailsFail(
+      userUpdateFail(
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message
