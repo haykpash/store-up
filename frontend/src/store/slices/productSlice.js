@@ -5,12 +5,14 @@ export const productSlice = createSlice({
   name: 'productList',
   initialState: { products: [] },
   reducers: {
-    getRequest: (state, action) => {
+    getRequest: (state) => {
       state.loading = true
     },
     getSuccess: (state, action) => {
       state.loading = false
-      state.products = action.payload
+      state.products = action.payload.products
+      state.pages = action.payload.pages
+      state.page = action.payload.page
     },
     getFail: (state, action) => {
       state.loading = false
@@ -23,11 +25,15 @@ const { getRequest, getSuccess, getFail } = productSlice.actions
 
 //-----------Action Creators--------//
 
-export const listProducts = () => async (dispatch) => {
+export const listProducts = (keyword = '', pageNumber = '') => async (
+  dispatch
+) => {
   // dispatch(getRequest())
   try {
     dispatch(getRequest())
-    const { data } = await axios.get('/api/products')
+    const { data } = await axios.get(
+      `/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
+    )
 
     dispatch(getSuccess(data))
   } catch (error) {

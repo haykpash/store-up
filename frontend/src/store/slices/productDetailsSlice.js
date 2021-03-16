@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-export const productDetaileSlice = createSlice({
+export const productDetailsSlice = createSlice({
   name: 'productDetails',
   initialState: { product: { reviews: [] } },
   reducers: {
@@ -23,7 +23,7 @@ const {
   detailsRequest,
   detailsSuccess,
   detailsFail,
-} = productDetaileSlice.actions
+} = productDetailsSlice.actions
 
 //--------------Action Creators-----------//
 

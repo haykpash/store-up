@@ -16,8 +16,8 @@ export const userListSlice = createSlice({
       state.loading = false
       state.error = action.payload
     },
-    userListReset: (state) => {
-      return []
+    userListReset: () => {
+      return { users: [] }
     },
   },
 })

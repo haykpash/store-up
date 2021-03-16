@@ -1,6 +1,6 @@
 const productData = [
   {
-    name: 'number 01 of number 01 product',
+    name: 'number 01 ',
     image: '/images/img1.jpg',
     description:
       'description of nunber 01 description of nunber 01 description of nunber 01 description of nunber 01 description of nunber 01 ',
@@ -8,11 +8,11 @@ const productData = [
     category: 'this is 01',
     price: 100.99,
     countInStock: 11,
-    ratingStars: 0,
+    rating: 0,
     reviewCount: 1,
   },
   {
-    name: 'number 02 of number 02 product',
+    name: 'number 02 ',
     image: '/images/img2.jpg',
     description:
       'description of nunber 02 description of nunber 02 description of nunber 02 description of nunber 02 description of nunber 02 ',
@@ -24,7 +24,7 @@ const productData = [
     reviewCount: 2,
   },
   {
-    name: 'number 03 of number 03 product',
+    name: 'number 03 ',
     image: '/images/img3.jpg',
     description:
       'description of nunber 03 description of nunber 03 description of nunber 03 description of nunber 03 description of nunber 03 ',
@@ -36,7 +36,7 @@ const productData = [
     reviewCount: 3,
   },
   {
-    name: 'number 04 of number 04 product',
+    name: 'number 04 ',
     image: '/images/img4.jpg',
     description:
       'description of nunber 04 description of nunber 04description of nunber 04description of nunber 04description of nunber 04',
@@ -48,7 +48,7 @@ const productData = [
     reviewCount: 4,
   },
   {
-    name: 'number 05 of number 05 product',
+    name: 'number 05 ',
     image: '/images/img5.jpg',
     description:
       'description of nunber 05 description of nunber 05description of nunber 05description of nunber 05description of nunber 05',
@@ -60,7 +60,7 @@ const productData = [
     reviewCount: 5,
   },
   {
-    name: 'number 06 of number 06 product',
+    name: 'number 06 ',
     image: '/images/img6.jpg',
     description:
       'description of nunber 06 description of nunber 06description of nunber 06description of nunber 06description of nunber 06',
@@ -72,7 +72,7 @@ const productData = [
     reviewCount: 6,
   },
   {
-    name: 'number 07 of number 07 product',
+    name: 'number 07 ',
     image: '/images/img7.jpg',
     description:
       'description of nunber 07 description of nunber 07description of nunber 07description of nunber 07description of nunber 07',
@@ -84,7 +84,7 @@ const productData = [
     reviewCount: 7,
   },
   {
-    name: 'number 08 of number 08 product',
+    name: 'number 08 ',
     image: '/images/img8.jpg',
     description:
       'description of nunber 08 description of nunber 08description of nunber 08description of nunber 08description of nunber 08',
@@ -96,7 +96,7 @@ const productData = [
     reviewCount: 8,
   },
   {
-    name: 'number 09 of number 09 product',
+    name: 'number 09 ',
     image: '/images/img9.jpg',
     description:
       'description of nunber 09 description of nunber 09description of nunber 07description of nunber 07description of nunber 07',
@@ -108,7 +108,7 @@ const productData = [
     reviewCount: 9,
   },
   {
-    name: 'number 10 of number 10 product',
+    name: 'number 10',
     image: '/images/img10.jpg',
     description:
       'description of nunber 10 description of nunber 10 description of nunber 10 description of nunber 10 description of nunber 10',
