@@ -19,6 +19,7 @@ import { productDeleteSlice } from './slices/productDeleteSlice'
 import { productCreateSlice } from './slices/productCreateSlice'
 import { productUpdateSlice } from './slices/productUpdateSlice'
 import { orderListSlice } from './slices/orderListSlice'
+import { productTopRatedSlice } from './slices/productTopRatedSlice'
 
 const store = configureStore({
   reducer: {
@@ -42,6 +43,7 @@ const store = configureStore({
     orderDeliver: orderDeliverSlice.reducer,
     orderListMy: orderListMySlice.reducer,
     orderList: orderListSlice.reducer,
+    productTopRated: productTopRatedSlice.reducer,
   },
 })
 

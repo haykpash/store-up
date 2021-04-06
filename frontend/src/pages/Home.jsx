@@ -6,6 +6,7 @@ import Loader from '../components/Loader'
 import ProductCard from '../components/ProductCard'
 import Paginate from '../components/Paginate'
 import { listProducts } from '../store/slices/productSlice'
+import ProductCarousel from '../components/ProductCarousel'
 
 const Home = ({ match }) => {
   const keyword = match.params.keyword
@@ -24,6 +25,7 @@ const Home = ({ match }) => {
 
   return (
     <>
+      {!keyword && <ProductCarousel />}
       <h1>All Products</h1>
       {loading ? (
         <Loader />
