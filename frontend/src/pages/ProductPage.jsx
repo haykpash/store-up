@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
+import Meta from '../components/Meta'
 import RatingStars from '../components/RatingStars'
 import { listProductsDetails } from '../store/slices/productDetailsSlice'
 import {
@@ -65,6 +66,7 @@ const ProductPage = ({ history, match }) => {
         <Message variant='danger'>{error}</Message>
       ) : (
         <>
+          <Meta title={product.name} />
           <Row>
             <Col md={7} lg={5}>
               <Image src={product.image} alt={product.name} fluid />

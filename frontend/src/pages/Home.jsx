@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react'
+import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'react-bootstrap'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import ProductCard from '../components/ProductCard'
 import Paginate from '../components/Paginate'
+import Meta from '../components/Meta'
 import { listProducts } from '../store/slices/productSlice'
 import ProductCarousel from '../components/ProductCarousel'
 
@@ -25,7 +27,14 @@ const Home = ({ match }) => {
 
   return (
     <>
-      {!keyword && <ProductCarousel />}
+      <Meta />
+      {!keyword ? (
+        <ProductCarousel />
+      ) : (
+        <NavLink to='/' className='btn btn-light'>
+          Go Back
+        </NavLink>
+      )}
       <h1>All Products</h1>
       {loading ? (
         <Loader />

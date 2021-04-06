@@ -21,10 +21,6 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'))
 }
 
-app.get('/', (req, res) => {
-  res.send("send Hayk's data")
-})
-
 app.use(express.json())
 
 app.use('/api/products', productRoutes)
