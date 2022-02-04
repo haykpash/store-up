@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
+import { loginSuccess } from './userSlice'
 
 export const userUpdateProfileSlice = createSlice({
   name: 'userUpdate',
@@ -17,13 +18,17 @@ export const userUpdateProfileSlice = createSlice({
       state.loading = false
       state.error = action.payload
     },
+    userUpdateProfileReset: () => {
+      return {}
+    },
   },
 })
 
-const {
+export const {
   userUpdateProfileRequest,
   userUpdateProfileSuccess,
   userUpdateProfileFail,
+  userUpdateProfileReset,
 } = userUpdateProfileSlice.actions
 
 //-----------Action Creators----------//
@@ -46,6 +51,9 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
     const { data } = await axios.put(`/api/users/profile`, user, config)
 
     dispatch(userUpdateProfileSuccess(data))
+    dispatch(loginSuccess(data))
+
+    localStorage.setItem('userInfo', JSON.stringify(data))
   } catch (error) {
     dispatch(
       userUpdateProfileFail(

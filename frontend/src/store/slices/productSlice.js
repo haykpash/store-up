@@ -13,6 +13,7 @@ export const productSlice = createSlice({
       state.products = action.payload.products
       state.pages = action.payload.pages
       state.page = action.payload.page
+      //console.log(Object.isFrozen(state.products))
     },
     getFail: (state, action) => {
       state.loading = false

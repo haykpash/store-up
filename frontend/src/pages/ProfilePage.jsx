@@ -5,7 +5,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { getUserDetails } from '../store/slices/userDetailsSlice'
-import { updateUserProfile } from '../store/slices/updateProfileSlice'
+import {
+  updateUserProfile,
+  userUpdateProfileReset,
+} from '../store/slices/updateProfileSlice'
 import { listMyOrders } from '../store/slices/orderListMySlice'
 
 const ProfilePage = ({ location, history }) => {
@@ -31,7 +34,8 @@ const ProfilePage = ({ location, history }) => {
     if (!userInfo) {
       history.push('/login')
     } else {
-      if (!user || !user.name) {
+      if (!user || !user.name || success) {
+        dispatch(userUpdateProfileReset())
         dispatch(getUserDetails('profile'))
         dispatch(listMyOrders())
       } else {
@@ -39,7 +43,7 @@ const ProfilePage = ({ location, history }) => {
         setEmail(user.email)
       }
     }
-  }, [dispatch, userInfo, history, user])
+  }, [dispatch, userInfo, history, user, success])
 
   const submitHandler = (e) => {
     e.preventDefault()
